@@ -8,13 +8,13 @@ class Person
         @happiness = 8
         @hygiene = 8
     end
-
+    
     def happiness=(num)
         @happiness = if num > 10
             10
         elsif num < 0
             0
-        else
+        else 
             num
         end
     end
@@ -23,8 +23,8 @@ class Person
         @hygiene = if num > 10
             10
         elsif num < 0
-            0
-        else
+            0 
+        else 
             num
         end
     end
@@ -33,7 +33,7 @@ class Person
         self.happiness > 7
     end
 
-    def clean? 
+    def clean?
         self.hygiene > 7
     end
 
@@ -48,29 +48,30 @@ class Person
     end
 
     def work_out
-        self.hygiene -= 3
         self.happiness += 2
+        self.hygiene -= 3
         "♪ another one bites the dust ♫"
     end
 
-    def call_friend(person)
+    def call_friend(friend)
         self.happiness += 3
-        person.happiness += 3
-        "Hi #{person.name}! It's #{self.name}. How are you?"
+        friend.happiness += 3
+        "Hi #{friend.name}! It's #{self.name}. How are you?"
     end
 
-    def start_conversation(person, topic)
+    def start_conversation(friend, topic)
         case topic
         when "politics"
-            person.happiness -= 2
-            self.happiness -= 2
+            [self, friend].each {|person| person.happiness -= 2}
+            # friend.happiness -= 2
             "blah blah partisan blah lobbyist"
         when "weather"
-            person.happiness += 1
-            self.happiness += 1
+            [self, friend].each {|person| person.happiness += 1}
             "blah blah sun blah rain"
-        else
+        else 
             "blah blah blah blah blah"
         end
     end
+
+
 end
